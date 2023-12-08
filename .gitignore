@@ -1,0 +1,22 @@
+# test music files
+file_example_WAV_5MG.wav
+mixkit-tech-house-vibes-130.mp3
+
+# cache
+__pycache__/
+
+# manual_tests
+DES.pkl
+inz.png
+*.hsfile
+music_tests/
+*.ipynb
+
+# private notes
+notes.txt
+*.pptx
+/diagrams
+
+# virtual environment
+.venv/
+

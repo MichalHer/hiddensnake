@@ -1,0 +1,12 @@
+[project]
+name = "hiddensnake"
+version = "0.0.1"
+description = "Steganographic tools library"
+readme = "README.md"
+requires-python = ">=3.11.2"
+dependencies = [
+    "pypng",
+]
+
+[project.urls]
+Repository = "https://github.com/MichalHer/hiddensnake"

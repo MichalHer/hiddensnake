@@ -100,7 +100,7 @@ class MainMenu:
                     print("- Unknown carrier file ◕_◕")
                     fp = None
                 fp.from_file(path)
-                fp.set_filename(pth.basename(path))
+                fp.set_filename(filename)
                 self.hs.register_carrier_file(fp)
                 print("- Carrier file registered ( ͡° ͜ʖ ͡°)")
             except Exception as e:
@@ -137,13 +137,14 @@ class MainMenu:
                 if self.hs.can_hide():
                     files = self.hs.hide()
                     for i, f in enumerate(files):
-                        filename = f'file_with_hidden_message_{i+1}.wav'
-                        if f.filename: filename = f"{i+1}_stego_{f.filename}"
+                        filename = f'file_with_hidden_message_{i+1}.unknown'
+                        if f.filename != None: filename = f"{i+1}_stego_{f.filename}"
                         f.save_file(filename)
                     print("Let's rock! ୧༼ಠ益ಠ༽︻╦╤─")
                 else:
                     print('- carrier files capacity is too low. ( ͡° ʖ̯ ͡°)')
-            except Exception:
+            except Exception as e:
+                print(e)
                 show_exception_occured()
             
         elif choice == "7":

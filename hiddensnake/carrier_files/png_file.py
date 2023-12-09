@@ -41,7 +41,7 @@ class PngFile(BaseFile):
         self.__data = self.__flatten_image_conversion(data)
 
     def set_filename(self, filename: str) -> None:
-        self.__filename = filename
+        self.filename = filename
     
     def __transform_PIL_data(self, PIL_data):
         data = list(PIL_data)

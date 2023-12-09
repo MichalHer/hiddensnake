@@ -20,3 +20,7 @@ notes.txt
 # virtual environment
 .venv/
 
+# pyinstaller
+*.spec
+/build
+/dist

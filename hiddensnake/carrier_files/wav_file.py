@@ -1,21 +1,7 @@
-from ..base import BaseFile
+from ..abstract_classes import AbstractFile
 from array import array
 
-class WavFile(BaseFile):
-    # _chunk_id:bytearray
-    # _chunk_size:bytearray
-    # _format:bytearray
-    # _subchunk1_id:bytearray
-    # _subchunk1_size:bytearray
-    # _audio_format:bytearray
-    # _num_channels:bytearray
-    # _sample_rate:bytearray
-    # _byte_rate:bytearray
-    # _block_align:bytearray
-    # _bits_per_sample:bytearray
-    # _subchunk2_id:bytearray
-    # _subchunk2_size:bytearray
-    # _data:bytearray
+class WavFile(AbstractFile):
 
     def from_bytes(self, bytes:bytearray) -> None:
         self._chunk_id = bytes[:4]

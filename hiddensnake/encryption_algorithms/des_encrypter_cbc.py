@@ -1,4 +1,4 @@
-from ..base import BaseEncrypter
+from ..abstract_classes import AbstractEncrypter
 from math import ceil
 from array import array
 from ..utils import int_to_bytearray
@@ -78,12 +78,7 @@ sboxes:list[list] = [
     ]
 ]
 
-class DESEncryptorCBC(BaseEncrypter):
-
-    # _password:str
-    # _key:bytearray
-    # _vector:bytearray
-
+class DESEncrypterCBC(AbstractEncrypter):
     def set_password(self, password: str) -> None:
         self._password = password
         key = bytearray(password, encoding='utf-8')

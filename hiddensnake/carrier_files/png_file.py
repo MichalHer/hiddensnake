@@ -2,14 +2,14 @@ import png
 
 from PIL import Image
 from array import array
-from ..base.base_file import BaseFile
+from ..abstract_classes import AbstractFile
 
 img_modes = {
     "RGB":3,
     "RGBA":4
 }
 
-class PngFile(BaseFile):
+class PngFile(AbstractFile):
     def from_bytes(self, bytes: bytearray) -> None:
         pass
     

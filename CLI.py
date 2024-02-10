@@ -1,8 +1,8 @@
-from hiddensnake.encryption_algorithms import DESEncryptorCBC
+from hiddensnake.encryption_algorithms import DESEncrypterCBC
 from hiddensnake.carrier_files import WavFile, PngFile
 from hiddensnake.hiding_algorithms import LSBHider
 from hiddensnake import HiddenSnake
-from hiddensnake.base import BaseEncrypter, BaseHider, BaseFile
+from hiddensnake.abstract_classes import AbstractEncrypter, AbstractHider, AbstractFile
 import os.path as pth
 from getpass import getpass
 import pickle
@@ -40,7 +40,7 @@ class MainMenu:
     def __init__(self):
         self.hs = HiddenSnake()
         self.steg = LSBHider()
-        self.enc = DESEncryptorCBC()
+        self.enc = DESEncrypterCBC()
 
 
     def __str__(self):

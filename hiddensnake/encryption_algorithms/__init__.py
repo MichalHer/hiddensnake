@@ -1,1 +1,1 @@
-from .des_encrypter_cbc import DESEncryptorCBC
+from .des_encrypter_cbc import DESEncrypterCBC

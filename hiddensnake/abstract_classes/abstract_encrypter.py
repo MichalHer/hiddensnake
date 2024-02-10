@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from array import array
 
-class BaseEncrypter(ABC):
+class AbstractEncrypter(ABC):
     @abstractmethod
     def set_password(self, password:str) -> None:
         pass

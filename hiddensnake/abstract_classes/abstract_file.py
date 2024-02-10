@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from array import array
 
-class BaseFile(ABC):
+class AbstractFile(ABC):
 
     @abstractmethod
     def from_bytes(self, bytes:bytearray) -> None:

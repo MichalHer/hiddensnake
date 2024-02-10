@@ -1,31 +1,30 @@
-from ..base import (
-    BaseHider,
-    BaseEncrypter,
-    BaseFile
+from ..abstract_classes import (
+    AbstractHider,
+    AbstractEncrypter,
+    AbstractFile
 )
 from copy import deepcopy
 from math import ceil
 from ..utils import int_to_bytearray
 
-class LSBHider(BaseHider):
-    # __encrypter:BaseEncrypter
-    # __bits:int
-    # __mask:int
-
+class LSBHider(AbstractHider):
     @property
     def samples_per_byte(self):
         return ceil(8/self.__bits)
 
-    def __init__(self, encrypter:BaseEncrypter = None, bits:int = 1) -> None:
-        if bits < 0 or bits > 8: raise ValueError('Bits number should be between 1 and 8.')
+    def __init__(self, encrypter:AbstractEncrypter = None, changed_bits_number:int = 1) -> None:
         self.__encrypter = encrypter if encrypter else None
-        self.__mask = (2**bits)-1
-        self.__bits = bits
+        self.__mask = (2**changed_bits_number)-1
+        self.set_changed_bits_number(changed_bits_number)
 
-    def register_encrypter(self, encrypter:BaseEncrypter) -> None:
+    def set_changed_bits_number(self, bits_number:int):
+        if bits_number < 0 or bits_number > 8: raise ValueError('Bits number should be between 1 and 8.')
+        self.__bits = bits_number
+
+    def register_encrypter(self, encrypter:AbstractEncrypter) -> None:
         self.__encrypter = encrypter
 
-    def hide(self, carrier_file:BaseFile, bytea:bytearray, index:int, total:int, file_extension:str="MSG") -> BaseFile:
+    def hide(self, carrier_file:AbstractFile, bytea:bytearray, index:int, total:int, file_extension:str="MSG") -> AbstractFile:
         postfix = bytearray([0x2a, 0x78, 0x2a , index, 0x2f, total, 0x2a, 0x78, 0x2a] + list(bytes(file_extension, encoding="utf-8")) + [0x2a, 0x78, 0x2a])        
         byte_with_eos = bytea.copy()
         byte_with_eos.extend(postfix)
@@ -49,7 +48,7 @@ class LSBHider(BaseHider):
         new_file.change_data(bytearray(file_samples))
         return new_file
     
-    def reval(self, carrier_file:BaseFile) -> bytearray:
+    def reveal(self, carrier_file:AbstractFile) -> bytearray:
         file_samples = carrier_file.get_samples()
         idx = 0
         result = []
@@ -73,7 +72,7 @@ class LSBHider(BaseHider):
         file_extension = file_extension[:file_extension.find(b'*x*')]
         return bytearray(result[:end_idx]), result[end_idx+3], result[end_idx+5], file_extension
     
-    def check_capacity(self, carrier_file:BaseFile, file_extension:str="MSG") -> int:
+    def check_capacity(self, carrier_file:AbstractFile, file_extension:str="MSG") -> int:
         postfix_len = len(bytearray(file_extension, encoding="utf-8"))+20
         file_samples = carrier_file.get_samples()
         return int(   ((len(file_samples) - (postfix_len*self.samples_per_byte)) / self.samples_per_byte)    )

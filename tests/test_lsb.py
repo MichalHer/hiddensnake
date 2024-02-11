@@ -1,6 +1,6 @@
 from unittest import TestCase
 from hiddensnake.hiding_algorithms import LSBHider
-from hiddensnake.file_parsers import WavFile
+from hiddensnake.carrier_files import WavFile
 from array import array
 
 class TestLSBHider(TestCase):

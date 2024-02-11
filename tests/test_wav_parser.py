@@ -1,5 +1,5 @@
 from unittest import TestCase
-from hiddensnake.file_parsers import WavFile
+from hiddensnake.carrier_files import WavFile
 from array import array
 
 class TestWavParser(TestCase):

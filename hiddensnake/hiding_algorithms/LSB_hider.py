@@ -11,15 +11,19 @@ class LSBHider(AbstractHider):
     @property
     def samples_per_byte(self):
         return ceil(8/self.__bits)
+    
+    @property
+    def changed_bits_number(self):
+        return self.__bits
 
     def __init__(self, encrypter:AbstractEncrypter = None, changed_bits_number:int = 1) -> None:
         self.__encrypter = encrypter if encrypter else None
-        self.__mask = (2**changed_bits_number)-1
         self.set_changed_bits_number(changed_bits_number)
 
     def set_changed_bits_number(self, bits_number:int):
         if bits_number < 0 or bits_number > 8: raise ValueError('Bits number should be between 1 and 8.')
         self.__bits = bits_number
+        self.__mask = (2**bits_number)-1
 
     def register_encrypter(self, encrypter:AbstractEncrypter) -> None:
         self.__encrypter = encrypter

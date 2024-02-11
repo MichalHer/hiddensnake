@@ -3,7 +3,7 @@ from array import array
 
 class WavFile(AbstractFile):
     @staticmethod
-    def get_file_extension(self):
+    def get_file_extension():
         return ".wav"
 
     def from_bytes(self, bytes:bytearray) -> None:
@@ -81,7 +81,10 @@ class WavFile(AbstractFile):
             return result 
     
     def get_samples(self) -> array:
-        arr = array('h', self._data)
+        try:
+            arr = array('h', self._data)
+        except:
+            arr = array('h', self._data[:-1])
         return arr
     
     def get_data(self) -> bytearray:

@@ -10,6 +10,9 @@ img_modes = {
 }
 
 class PngFile(AbstractFile):
+    def get_file_extension(self):
+        return ".png"
+
     def from_bytes(self, bytes: bytearray) -> None:
         pass
     

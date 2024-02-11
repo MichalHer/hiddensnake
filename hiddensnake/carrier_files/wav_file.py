@@ -3,6 +3,9 @@ from array import array
 
 class WavFile(AbstractFile):
 
+    def get_file_extension(self):
+        return ".wav"
+
     def from_bytes(self, bytes:bytearray) -> None:
         self._chunk_id = bytes[:4]
         self._chunk_size = bytes[4:8]

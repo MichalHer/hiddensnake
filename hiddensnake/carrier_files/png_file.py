@@ -10,6 +10,7 @@ img_modes = {
 }
 
 class PngFile(AbstractFile):
+    @staticmethod
     def get_file_extension(self):
         return ".png"
 

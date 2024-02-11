@@ -2,7 +2,7 @@ from ..abstract_classes import AbstractFile
 from array import array
 
 class WavFile(AbstractFile):
-
+    @staticmethod
     def get_file_extension(self):
         return ".wav"
 

@@ -3,7 +3,7 @@ name = "hiddensnake"
 version = "1.0.5"
 description = "Steganographic tools library"
 readme = "README.md"
-requires-python = "<=3.12"
+requires-python = "<3.11"
 dependencies = [
     "pypng",
 ]
